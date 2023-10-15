@@ -5,6 +5,41 @@ use bcrypt::{hash, verify};
 use std::time::Duration;
 use settimeout::set_timeout;
 
+use poem::{listener::TcpListener, Route, Server, middleware::Cors};
+use poem_openapi::{param::Query, payload::PlainText, payload::Response, OpenApi, OpenApiService};
+
+struct Api;
+
+#[OpenApi]
+impl Api {
+    #[oai(path = "/make_account", method = "get")]
+    async fn run(&self) -> PlainText<String> {
+        let info = WebServer::handle_connection().await;
+        let info = info[0].0.clone();
+        return PlainText(info);
+    }
+
+    #[oai(path = "/login", method = "get")]
+    async fn index(&self, id: Query<Option<String>>, password: Query<Option<String>>) -> PlainText<String>  {
+        println!("working so far");
+        let id = id.0.unwrap();
+        let password = password.0.unwrap();
+        let info = WebServer::log_in(id, password).await;
+        return PlainText(info.to_string());
+    }
+}
+
+#[tokio::main]
+async fn main() -> Result<(), std::io::Error> {
+    let api_service =
+        OpenApiService::new(Api, "notenest api", "1.0").server("http://localhost:3000/api");
+    let ui = api_service.swagger_ui();
+    Server::new(TcpListener::bind("127.0.0.1:3300"))
+        .run(poem::EndpointExt::with(Route::new().nest("/api",api_service).nest("/",ui), Cors::new()))
+        .await
+}
+
+/*
 #[tokio::main] 
 async fn main() {
     WebServer::establish().await;
@@ -45,3 +80,4 @@ async fn main() {
     println!("Deleted account: {}", user_id.name);*/
 }
 
+*/

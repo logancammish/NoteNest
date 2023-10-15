@@ -15,4 +15,4 @@ bcrypt = "0.15.0"
 reqwest = { version = "x", features = ["blocking"] }
 chrono = "0.4.28"
 poem = "x"
-poem-openapi = "x"
+poem-openapi = {"x", features = ["swagger-ui"]}

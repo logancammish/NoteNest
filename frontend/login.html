@@ -1,0 +1,45 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <link rel="stylesheet" href="./style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&family=Rubik:wght@300&display=swap" rel="stylesheet">
+    </head>
+    <body> 
+      <div id="sidenav">
+          <ul id="navigators"> 
+              <li><a class="active" href="home.html"><img src="./images/home.png"></a></li>
+              <li><a class="active" href="playlists.html"><img src="./images/library.png"></a></li>
+              <li><a class="active" href="accountcreation.html">Create account</a></li>
+              <li><a class="active" href="login.html">Log in</a></li>
+          </ul>
+          <hr>
+          <ul id="playlists"> 
+              <li><a class="active" href="index.html"><img src="./images/icon.ico"></a></li>
+              <li><a class="active" href="index.html"><img src="./images/icon.ico"></a></li>
+              <li><a class="active" href="index.html"><img src="./images/icon.ico"></a></li>
+              <li><a class="active" href="index.html"><img src="./images/icon.ico"></a></li>
+              <li><a class="active" href="index.html"><img src="./images/icon.ico"></a></li>
+              <li><a class="active" href="index.html"><img src="./images/icon.ico"></a></li>
+          </ul>
+          <br> 
+          <hr>
+      </div>
+        <p id="a" style="text-align: center;color: aliceblue;text-align: center;display: block;width: 80%;margin: 0 auto;"> Log into your account here, this will contact the server at 127.0.0.1:3300 and verify your id and password based on the hash in the Firebase realtime database. You may have to locally run the exe linked at the bottom of this page. </p>
+        <p style="text-align: center;color: aliceblue;"> ID: </p>
+        <input style="text-align: center;display: block;width: 100px;margin: 0 auto;" type="text" id="id" name="id"><br><br> <p style="text-align: center; color: aliceblue;"> Password: </p>
+      <input type="text" id="password" name="password"><br><br>
+        <button onclick="run()" type="button">Sign in!</button>
+        <br><br><br>
+        <p style="text-align: center;color: aliceblue;">Relevant executable to run server locally can be found<a href="https://github.com/logancammish/test/releases/download/342234/backend.exe"> here</a></p>
+        <script> function run() {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", "http://localhost:3300/api/login?id=" + document.getElementById("id") + "&password=" +
+            document.getElementById("password"), false ); 
+            xmlHttp.send( null );
+            document.getElementById("a").innerHTML =  xmlHttp.responseText; }
+        </script>
+    </body>
+</html>

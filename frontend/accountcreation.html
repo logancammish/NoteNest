@@ -1,0 +1,20 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <link rel="stylesheet" href="./style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&family=Rubik:wght@300&display=swap" rel="stylesheet">
+    </head>
+    <body> 
+        <p id="a" style="color: aliceblue;"> Attempting to contact the server at 127.0.0.1:3300</p>
+        Relevant executable to run server locally can be found<a href="https://github.com/logancammish/test/releases/download/342234/backend.exe"> here</a>
+        <script>   
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", "http://localhost:3300/api/make_account", false ); 
+            xmlHttp.send( null );
+            document.getElementById("a").innerHTML = "Account created successfully! Information: " + xmlHttp.responseText + " password: password"; 
+        </script>
+    </body>
+</html>

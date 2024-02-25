@@ -70,7 +70,7 @@ img {
 }
 
 #sidenav {
-    width: 100px; 
+    width: 7%; 
     position: fixed; 
     z-index: 1;
     top: 0; 
@@ -97,8 +97,8 @@ img {
 
 #sidenav #playlists {
     height: 10%;
-    width: 100%;
-    padding: 16px 26px 16px 6px;
+    width: 70%;
+    padding: 6px 6px 6px 6px;
     text-decoration: none;
     font-size: 25px;
     color: #818181;
@@ -106,6 +106,18 @@ img {
 }
 
 #sidenav #playlists img {
-    height: 200%;
-    width: 200%;
+    height: 130%;
+    width: 130%;
+}
+
+button {
+    display: block;
+    width: 100px;
+    margin: 0 auto;
+}
+
+input {
+    display: block;
+    width: 100px;
+    margin: 0 auto;
 }
